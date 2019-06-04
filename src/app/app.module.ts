@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,14 +38,19 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
   MatTooltipModule,
   MatTreeModule, } from '@angular/material';
 import { EnderecoComponent } from './endereco/endereco.component';
+import { AgendaComponent } from './agenda/agenda.component';
+import { CompromissoComponent } from './compromisso/compromisso.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
-    EnderecoComponent
+    EnderecoComponent,
+    AgendaComponent,
+    CompromissoComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
