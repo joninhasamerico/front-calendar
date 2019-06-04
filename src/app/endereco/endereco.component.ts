@@ -5,11 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './endereco.component.html',
   styleUrls: ['./endereco.component.css']
 })
-export class EnderecoComponent implements OnInit {
+export class EnderecoComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  log(x) {
+    console.log(x);
   }
-
+ 
 }
