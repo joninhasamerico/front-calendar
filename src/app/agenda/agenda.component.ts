@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './agenda.component.html',
   styleUrls: ['./agenda.component.css']
 })
-export class AgendaComponent implements OnInit {
+export class AgendaComponent {
 
   displayedColumns: string[] = ['_id', 'diaMes', 'actionsColumn'];
   agendas: Agenda[];
@@ -18,23 +18,26 @@ export class AgendaComponent implements OnInit {
   constructor(private agendaService: AgendaServiceService,
               private router: Router,
               private route: ActivatedRoute
-              ) { }
-
-  ngOnInit(): void {
-    this.agendaService.list().subscribe(data => this.agendas = data);
-    this.cont = 0;
+  ) {
+    this.carregaAgenda();
   }
+
+  async carregaAgenda() {
+    await this.agendaService.carregaAgenda().then(result => this.agendas = result.data)
+      .catch(error => { console.error(error); return Promise.reject(error); });
+  }
+
 
   edit(element) {
     console.log(element);
   }
 
-  delete(elementId){
-    this.agendaService.delete(elementId)
-    this.agendaService.list().subscribe(data => this.agendas = data);
+  delete(elementId) {
+    this.agendaService.delete(elementId);
+    this.carregaAgenda();
   }
 
-  goToPage(pageName){
+  goToPage(pageName) {
     this.router.navigate([`${pageName}`]);
     // this.router.navigate(['agendaCadastro', object], { relativeTo: this.route });
   }
