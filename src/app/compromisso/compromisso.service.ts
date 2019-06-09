@@ -33,4 +33,24 @@ export class CompromissoService {
       .catch(error => { console.error(error); return Promise.reject(error); });
   }
 
+  async buscaAgenda(){
+    return await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => result)
+    .catch(error => { console.error(error); return Promise.reject(error); });
+  }
+
+  async create(dados) {
+    return axios.post('http://127.0.0.1:3000/api/compromisso', dados)
+      .then((response) => {
+        return response.data;
+      });
+  }
+
+  async buscaCep(dadosCep){
+    console.log(dadosCep)
+    return await axios.get(`http://127.0.0.1:3000/api/viacep/${dadosCep}`)
+    .then((response) => {
+      return response.data;
+    });
+  }
+
 }
