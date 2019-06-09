@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-endereco',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnderecoComponent {
 
-  log(x) {
-    console.log(x);
+  constructor(private router: Router) { }
+
+  goToPage(pageName) {
+    this.router.navigate([`${pageName}`]);
+    // this.router.navigate(['agendaCadastro', object], { relativeTo: this.route });
   }
- 
+
 }
