@@ -1,0 +1,8 @@
+{
+    "/api*":{
+        "target" : "http://locahost/3000",
+        "secure": false,
+        "changeOrigin" : true    
+    }
+    
+}

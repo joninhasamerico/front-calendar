@@ -40,6 +40,9 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
 import { EnderecoComponent } from './endereco/endereco.component';
 import { AgendaComponent } from './agenda/agenda.component';
 import { CompromissoComponent } from './compromisso/compromisso.component';
+import { AgendaCadastroComponent } from './agenda/agenda-cadastro/agenda-cadastro.component';
+import { CompromissoCadastroComponent } from './compromisso/compromisso-cadastro/compromisso-cadastro.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -47,9 +50,12 @@ import { CompromissoComponent } from './compromisso/compromisso.component';
     MainNavComponent,
     EnderecoComponent,
     AgendaComponent,
-    CompromissoComponent
+    CompromissoComponent,
+    AgendaCadastroComponent,
+    CompromissoCadastroComponent
   ],
   imports: [
+    FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,

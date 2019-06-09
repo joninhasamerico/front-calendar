@@ -1,15 +1,69 @@
 import { Component, OnInit } from '@angular/core';
+import { Compromisso } from './Compromisso';
+import { Router, ActivatedRoute } from '@angular/router';
+import { CompromissoService } from './compromisso.service';
+import { AgendaServiceService } from '../agenda/agenda-service.service';
+
+import axios from 'axios';
 
 @Component({
   selector: 'app-compromisso',
   templateUrl: './compromisso.component.html',
   styleUrls: ['./compromisso.component.css']
 })
-export class CompromissoComponent implements OnInit {
+export class CompromissoComponent {
 
-  constructor() { }
+  displayedColumns: string[] = ['_id', 'diaMes', 'actionsColumn'];
+  compromissos: Array<any>;
+  cont: number;
+  agendas: Array<any>;
 
-  ngOnInit() {
+
+  constructor(private compromissoSerivice: CompromissoService,
+              private router: Router,
+              private route: ActivatedRoute,
+              private agendaService: AgendaServiceService
+  ) {
+    // this.carrega();
+    this.carregaAgenda()
   }
+
+
+
+  carrega() {
+    // let cast = Promise.resolve(this.compromissoSerivice.list());
+    // return this.compromissoSerivice.list()
+    //   .then(res => {
+    //     this.compromissos = res.data;
+    //   });
+  }
+
+
+ async carregaAgenda() {
+    await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => this.agendas = result.data)
+    .catch(error => { console.error(error); return Promise.reject(error); });
+
+  }
+
+  loadByID(id) {
+    this.compromissoSerivice.loadByID(id).then(res => {
+      this.compromissos = res.data;
+    });
+  }
+
+  onEdit(agendaId, compromissoId) {
+    // console.log(objeto);
+  }
+
+
+  delete(selectedLevel, compromissoId){
+    this.compromissoSerivice.delete(selectedLevel, compromissoId)
+  }
+
+  goToPage(pageName) {
+    this.router.navigate([`${pageName}`]);
+    // this.router.navigate(['agendaCadastro', object], { relativeTo: this.route });
+  }
+
 
 }

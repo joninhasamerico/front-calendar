@@ -1,0 +1,11 @@
+<form method="POST" #frm="ngForm" (ngSubmit)="onSubmit(frm)">
+  <div class="col-md-4">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="dataCompromisso">Data do compromisso</label>
+        <input name="diaMes" [(ngModel)]="dados.diaMes" type="text" class="form-control">
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Sign in</button>
+  </div>
+</form>
