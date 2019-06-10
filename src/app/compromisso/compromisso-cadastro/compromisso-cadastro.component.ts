@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompromissoService } from '../compromisso.service';
 import { Compromisso } from '../Compromisso';
+import { AgendaServiceService } from 'src/app/agenda/agenda-service.service';
 
 
 @Component({
@@ -14,20 +15,25 @@ export class CompromissoCadastroComponent implements OnInit {
   form: FormGroup;
   agendas: Array<any>;
   dados: any;
-  agendaIdCompromissoId: any;
+  agendaIdCompromissoId: String;
 
-  constructor(private compromissoService: CompromissoService, private router: Router) { }
+  constructor(private compromissoService: CompromissoService, private router: Router, private agendaService: AgendaServiceService) { }
 
 
   ngOnInit() {
     this.dados = {};
-    this.carregaAgenda()
+    this.carregaAgenda();
 
     this.agendaIdCompromissoId = window.localStorage.getItem('agendaIdCompromissoId');
-    if (this.agendaIdCompromissoId) {
+    if (this.agendaIdCompromissoId && this.agendaIdCompromissoId.length > 16) {
       this.compromissoService
       .buscaCompromissoEspecifico(this.agendaIdCompromissoId).then(result => console.log(this.dados = result.data[0]))
         .catch(error => { console.error(error); return Promise.reject(error); });
+      window.localStorage.removeItem('agendaIdCompromissoId');
+    }
+
+    if (this.agendaIdCompromissoId && this.agendaIdCompromissoId.length === 16) {
+      this.dados.agendaId = this.agendaIdCompromissoId;
       window.localStorage.removeItem('agendaIdCompromissoId');
     }
   }
@@ -38,15 +44,15 @@ export class CompromissoCadastroComponent implements OnInit {
   }
 
   async create(s) {
-    console.log(this.dados)
+    console.log(this.dados);
     if (this.dados._id == null) {
       this.compromissoService.create(this.dados)
-        .then(result => alert("Salvo com sucesso"))
+        .then(result => alert('Salvo com sucesso'))
         .catch(error => { console.error(error); return Promise.reject(error); });
       this.router.navigate([`compromisso`]);
     } else {
       this.compromissoService.edit(this.dados, this.agendaIdCompromissoId)
-        .then(result => alert("Atualizado com sucesso"))
+        .then(result => alert('Atualizado com sucesso'))
         .catch(error => { console.error(error); return Promise.reject(error); });
       this.router.navigate([`compromisso`]);
     }

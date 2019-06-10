@@ -29,7 +29,7 @@ export class AgendaComponent {
 
 
   onEdit(element) {
-    window.localStorage.setItem("agendaId", element._id.toString());
+    window.localStorage.setItem('agendaId', element._id.toString());
     this.router.navigate(['agendaCadastro']);
   }
 

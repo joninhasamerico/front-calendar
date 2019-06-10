@@ -17,7 +17,7 @@ export class AgendaServiceService {
 
 
   async carregaAgenda() {
-    return await axios.get(`http://127.0.0.1:3000/api/agenda`)
+    return await axios.get(`http://127.0.0.1:3000/api/agenda`);
   }
 
   async buscaAgendaById(id) {
