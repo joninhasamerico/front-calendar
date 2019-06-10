@@ -17,6 +17,7 @@ export class CompromissoComponent {
   compromissos: Array<any>;
   cont: number;
   agendas: Array<any>;
+  selectedLevel: any;
 
 
   constructor(private compromissoSerivice: CompromissoService,
@@ -25,10 +26,8 @@ export class CompromissoComponent {
               private agendaService: AgendaServiceService
   ) {
     // this.carrega();
-    this.carregaAgenda()
+    this.carregaAgenda();
   }
-
-
 
   carrega() {
     // let cast = Promise.resolve(this.compromissoSerivice.list());
@@ -40,7 +39,10 @@ export class CompromissoComponent {
 
 
  async carregaAgenda() {
-    await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => this.agendas = result.data)
+    await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => {
+      this.agendas = result.data;
+      this.selectedLevel = result.data[0]
+    })
     .catch(error => { console.error(error); return Promise.reject(error); });
 
   }
