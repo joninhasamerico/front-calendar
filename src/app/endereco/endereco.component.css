@@ -1,0 +1,9 @@
+.endereco-componente {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  .endereco-componente > * {
+    width: 100%;
+  }

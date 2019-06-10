@@ -1,0 +1,56 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Compromissos</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" (click)="goToPage('compromissoCadastro')">Novo Compromisso</button>
+    </div>
+  </div>
+  <div class="form-group col-md-4">
+    <label for="agendaId">Data da agenda</label>
+    <select name="selectedLevel" [(ngModel)]="selectedLevel" id="selectedLevel" class="form-control">
+      <option   *ngFor="let agenda of agendas" [ngValue]="agenda._id">
+        {{agenda.diaMes}}
+      </option>
+    </select>
+    <br>
+    <button type="button" class="btn btn-success btn-block" (click)="loadByID(selectedLevel)">Atualizar</button>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Assunto</th>
+          <th>Descrição</th>
+          <th>Horário de inicio</th>
+          <th>Horario de fim</th>
+
+
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let compromisso of compromissos">
+          <td>{{ compromisso.agendaId  }}</td>
+          <td>{{ compromisso.assunto }}</td>
+          <td>{{ compromisso.descricaoCompromisso }}</td>
+          <td>{{ compromisso.horarioInicio }}</td>
+          <td>{{ compromisso.horarioFim }}</td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-warning mb-1 btn-sm"
+                (click)="onEdit(selectedLevel, compromisso._id)">
+                Visualizar/Editar
+              </button>
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="delete(selectedLevel, compromisso._id)">
+                Excluir
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

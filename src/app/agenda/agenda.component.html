@@ -1,0 +1,38 @@
+<div class="card mt-3">
+  <div class="card-header">
+    <div class="float-left">
+      <h4>Datas</h4>
+    </div>
+    <div class="float-right">
+      <button type="button" class="btn btn-primary" (click)="goToPage('agendaCadastro')">Nova data</button>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Nº</th>
+          <th>Data</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let agenda of agendas; let i = index ">
+          <td>{{ i+1  }}</td>
+          <td>{{ agenda.diaMes }}</td>
+          <td>
+            <span class="float-right">
+              <button class="btn btn-outline-warning mb-1 btn-sm mr-1"
+                (click)="onEdit(agenda)">
+                Visualizar/Editar
+              </button>
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="delete(agenda)">
+                Excluir
+              </button>
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
