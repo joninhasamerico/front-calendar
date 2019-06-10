@@ -15,30 +15,16 @@ export class AgendaServiceService {
 
   constructor(private http: HttpClient) { }
 
-  // list() {
-  //   // return this.http.get<Agenda[]>(this.API);
-  //   return axios.get('http://127.0.0.1:3000/api/agenda')
-  //     .then((response) => {
-  //       return response.data
-  //     });
-  // }
 
   async carregaAgenda() {
     return await axios.get(`http://127.0.0.1:3000/api/agenda`)
-    // .then(result => result.data)
-    //   .catch(error => { console.error(error); return Promise.reject(error); });
-
   }
 
   async buscaAgendaById(id) {
     return await axios.get(`http://127.0.0.1:3000/api/agenda/${id}`)
-    // .then(result => result.data)
-    //   .catch(error => { console.error(error); return Promise.reject(error); });
-
   }
 
   async delete(agendas) {
-    // let teste = this.http.delete(`${this.API}/${agendas._id}`).pipe(take(1))
     await axios.delete(`${this.API}`, {
       data: {
         agendaId: agendas._id,

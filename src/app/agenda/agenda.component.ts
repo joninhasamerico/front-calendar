@@ -40,7 +40,6 @@ export class AgendaComponent {
 
   goToPage(pageName) {
     this.router.navigate([`${pageName}`]);
-    // this.router.navigate(['agendaCadastro', object], { relativeTo: this.route });
   }
 
 }
