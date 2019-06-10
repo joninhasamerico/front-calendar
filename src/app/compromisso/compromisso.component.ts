@@ -41,7 +41,9 @@ export class CompromissoComponent {
   async carregaAgenda() {
     await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => {
       this.agendas = result.data;
-      this.selectedLevel = result.data[0]
+      this.selectedLevel = result.data[0]._id;
+      this.compromissos = result.data[0].compromisso;
+      console.log(result.data);
     })
       .catch(error => { console.error(error); return Promise.reject(error); });
 

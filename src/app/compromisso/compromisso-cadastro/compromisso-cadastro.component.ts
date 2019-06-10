@@ -15,7 +15,7 @@ export class CompromissoCadastroComponent implements OnInit {
   form: FormGroup;
   agendas: Array<any>;
   dados: any;
-  agendaIdCompromissoId: String;
+  agendaIdCompromissoId: any;
 
   constructor(private compromissoService: CompromissoService, private router: Router, private agendaService: AgendaServiceService) { }
 
