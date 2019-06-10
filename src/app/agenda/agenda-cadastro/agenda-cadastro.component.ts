@@ -16,22 +16,32 @@ export class AgendaCadastroComponent implements OnInit {
   agendas: any;
 
   constructor(private agendaService: AgendaServiceService,
-              private router: Router
-  ) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.dados = {};
-  }
 
-  onClickMe() {
+    const userId = window.localStorage.getItem('agendaId');
+    if (userId) {
+      this.agendaService.buscaAgendaById(userId).then(result => console.log(this.dados = result.data[0]))
+        .catch(error => { console.error(error); return Promise.reject(error); });
+      window.localStorage.removeItem('agendaId');
+    }
   }
-
 
   onSubmit(s) {
-    this.agendaService.create(this.dados)
+
+    if (this.dados._id == null) {
+      this.agendaService.create(this.dados)
       .then(result => this.agendas = result.data)
       .catch(error => { console.error(error); return Promise.reject(error); });
-    this.router.navigate([`cadastroCompromisso`], this.agendas._id);
+      this.router.navigate([`compromissoCadastro`]);
+    } else {
+      this.agendaService.edite(this.dados)
+      .then(result => this.agendas = result.data)
+      .catch(error => { console.error(error); return Promise.reject(error); });
+      this.router.navigate([`compromissoCadastro`]);
+    }
   }
 
 

@@ -30,6 +30,13 @@ export class AgendaServiceService {
 
   }
 
+  async buscaAgendaById(id) {
+    return await axios.get(`http://127.0.0.1:3000/api/agenda/${id}`)
+    // .then(result => result.data)
+    //   .catch(error => { console.error(error); return Promise.reject(error); });
+
+  }
+
   async delete(agendas) {
     // let teste = this.http.delete(`${this.API}/${agendas._id}`).pipe(take(1))
     await axios.delete(`${this.API}`, {
@@ -41,6 +48,13 @@ export class AgendaServiceService {
 
   create(dados) {
     return axios.post('http://127.0.0.1:3000/api/agenda', dados)
+      .then((response) => {
+        return response.data;
+      });
+  }
+
+  edite(dados) {
+    return axios.put('http://127.0.0.1:3000/api/agenda/'+dados._id, dados)
       .then((response) => {
         return response.data;
       });
