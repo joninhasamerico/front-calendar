@@ -52,7 +52,9 @@ export class CompromissoComponent {
   }
 
   onEdit(agendaId, compromissoId) {
-    // console.log(objeto);
+    let agendaIdCompromissoId = `${agendaId}/${compromissoId}`;
+    window.localStorage.setItem("agendaIdCompromissoId", agendaIdCompromissoId.toString());
+    this.router.navigate(['compromissoCadastro']);
   }
 
 

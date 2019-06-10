@@ -33,6 +33,11 @@ export class CompromissoService {
       .catch(error => { console.error(error); return Promise.reject(error); });
   }
 
+  async buscaCompromissoEspecifico(buscaAgendaById){
+    return await axios.get(`http://127.0.0.1:3000/api/compromisso/${buscaAgendaById} `).then(result => result)
+      .catch(error => { console.error(error); return Promise.reject(error); });
+  }
+
   async buscaAgenda(){
     return await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => result)
     .catch(error => { console.error(error); return Promise.reject(error); });
@@ -40,6 +45,13 @@ export class CompromissoService {
 
   async create(dados) {
     return axios.post('http://127.0.0.1:3000/api/compromisso', dados)
+      .then((response) => {
+        return response.data;
+      });
+  }
+
+  async edit(dados, agendaIdCompromissoId) {
+    return axios.put(`http://127.0.0.1:3000/api/compromisso/${agendaIdCompromissoId}` , dados)
       .then((response) => {
         return response.data;
       });

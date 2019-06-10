@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompromissoService } from '../compromisso.service';
 import { Compromisso } from '../Compromisso';
@@ -14,13 +14,22 @@ export class CompromissoCadastroComponent implements OnInit {
   form: FormGroup;
   agendas: Array<any>;
   dados: any;
+  agendaIdCompromissoId: any;
 
-  constructor(private compromissoService: CompromissoService) { }
+  constructor(private compromissoService: CompromissoService, private router: Router) { }
 
 
   ngOnInit() {
     this.dados = {};
     this.carregaAgenda()
+
+    this.agendaIdCompromissoId = window.localStorage.getItem('agendaIdCompromissoId');
+    if (this.agendaIdCompromissoId) {
+      this.compromissoService
+      .buscaCompromissoEspecifico(this.agendaIdCompromissoId).then(result => console.log(this.dados = result.data[0]))
+        .catch(error => { console.error(error); return Promise.reject(error); });
+      window.localStorage.removeItem('agendaIdCompromissoId');
+    }
   }
 
   async carregaAgenda() {
@@ -29,14 +38,26 @@ export class CompromissoCadastroComponent implements OnInit {
   }
 
   async create(s) {
-    this.compromissoService.create(this.dados)
-      .then(result => alert("Salvo com sucesso"))
-      .catch(error => { console.error(error); return Promise.reject(error); });
-    this.dados = {}
+    console.log(this.dados)
+    if (this.dados._id == null) {
+      this.compromissoService.create(this.dados)
+        .then(result => alert("Salvo com sucesso"))
+        .catch(error => { console.error(error); return Promise.reject(error); });
+      this.router.navigate([`compromisso`]);
+    } else {
+      this.compromissoService.edit(this.dados, this.agendaIdCompromissoId)
+        .then(result => alert("Atualizado com sucesso"))
+        .catch(error => { console.error(error); return Promise.reject(error); });
+      this.router.navigate([`compromisso`]);
+    }
+  }
+
+  async edit() {
+
   }
 
   async buscaCep(dadosCep) {
-    if(dadosCep){
+    if (dadosCep) {
       await this.compromissoService.buscaCep(dadosCep).then(result => {
         this.dados.logradouro = result.logradouro;
         this.dados.complemento = result.complemento;
@@ -47,7 +68,7 @@ export class CompromissoCadastroComponent implements OnInit {
       )
         .catch(error => { console.error(error); return Promise.reject(error); });
     }
-    
+
   }
 
 
