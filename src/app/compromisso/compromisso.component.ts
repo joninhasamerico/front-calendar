@@ -59,7 +59,8 @@ export class CompromissoComponent {
 
 
   delete(selectedLevel, compromissoId){
-    this.compromissoSerivice.delete(selectedLevel, compromissoId)
+    this.compromissoSerivice.delete(selectedLevel, compromissoId);
+    this.loadByID(selectedLevel);
   }
 
   goToPage(pageName) {
