@@ -6,7 +6,7 @@ import { AgendaCadastroComponent } from './agenda/agenda-cadastro/agenda-cadastr
 import { CompromissoCadastroComponent } from './compromisso/compromisso-cadastro/compromisso-cadastro.component';
 import { CompromissoComponent } from './compromisso/compromisso.component';
 import { EnderecoCadastroComponent } from './endereco/endereco-cadastro/endereco-cadastro.component';
-import { ConsolidacaoServiceService } from './consolidacao/consolidacao-service.service';
+import { ConsolidacaoComponent } from './consolidacao/consolidacao.component';
 
 const routes: Routes = [
   { path: 'endereco', component: EnderecoComponent },
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'agendaCadastro', component: AgendaCadastroComponent },
   { path: 'compromisso', component: CompromissoComponent },
   { path: 'compromissoCadastro', component: CompromissoCadastroComponent },
-  { path: 'consolidacao', component: ConsolidacaoServiceService },
+  { path: 'consolidacao', component: ConsolidacaoComponent },
 ];
 
 @NgModule({

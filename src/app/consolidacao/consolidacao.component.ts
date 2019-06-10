@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConsolidacaoServiceService } from './consolidacao-service.service';
 
 @Component({
   selector: 'app-consolidacao',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConsolidacaoComponent implements OnInit {
 
-  constructor() { }
+  consolidacao: any;
+
+  constructor(private consolidacaoService: ConsolidacaoServiceService) { }
 
   ngOnInit() {
+    this.consolidacaoService.buscaConsolidacao()
+      .then(result => this.consolidacao = result.data )
+      .catch(erro => console.log("DEU ERRO: " +erro));
   }
 
 }
