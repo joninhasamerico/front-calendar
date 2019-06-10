@@ -38,12 +38,12 @@ export class CompromissoComponent {
   }
 
 
- async carregaAgenda() {
+  async carregaAgenda() {
     await axios.get(`http://127.0.0.1:3000/api/agenda`).then(result => {
       this.agendas = result.data;
       this.selectedLevel = result.data[0]
     })
-    .catch(error => { console.error(error); return Promise.reject(error); });
+      .catch(error => { console.error(error); return Promise.reject(error); });
 
   }
 
@@ -55,12 +55,12 @@ export class CompromissoComponent {
 
   onEdit(agendaId, compromissoId) {
     const agendaIdCompromissoId = `${agendaId}/${compromissoId}`;
-    window.localStorage.setItem("agendaIdCompromissoId", agendaIdCompromissoId.toString());
+    window.localStorage.setItem('agendaIdCompromissoId', agendaIdCompromissoId.toString());
     this.router.navigate(['compromissoCadastro']);
   }
 
 
-  delete(selectedLevel, compromissoId){
+  delete(selectedLevel, compromissoId) {
     this.compromissoSerivice.delete(selectedLevel, compromissoId);
     this.loadByID(selectedLevel);
   }

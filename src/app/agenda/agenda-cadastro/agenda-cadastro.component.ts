@@ -29,13 +29,13 @@ export class AgendaCadastroComponent implements OnInit {
     }
   }
 
-  onSubmit(s) {
+ async  onSubmit(s) {
 
     if (this.dados._id == null) {
-      this.agendaService.create(this.dados)
-      .then(result => this.agendas = result.data)
+      await this.agendaService.create(this.dados)
+      .then(result => this.router.navigate([`compromissoCadastro`]))
       .catch(error => { console.error(error); return Promise.reject(error); });
-      this.router.navigate([`compromissoCadastro`]);
+      
     } else {
       this.agendaService.edite(this.dados)
       .then(result => this.agendas = result.data)
