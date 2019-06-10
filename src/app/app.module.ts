@@ -44,6 +44,7 @@ import { AgendaCadastroComponent } from './agenda/agenda-cadastro/agenda-cadastr
 import { CompromissoCadastroComponent } from './compromisso/compromisso-cadastro/compromisso-cadastro.component';
 import { FormsModule } from '@angular/forms';
 import { EnderecoCadastroComponent } from './endereco/endereco-cadastro/endereco-cadastro.component';
+import { ConsolidacaoComponent } from './consolidacao/consolidacao.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { EnderecoCadastroComponent } from './endereco/endereco-cadastro/endereco
     CompromissoComponent,
     AgendaCadastroComponent,
     CompromissoCadastroComponent,
-    EnderecoCadastroComponent
+    EnderecoCadastroComponent,
+    ConsolidacaoComponent
   ],
   imports: [
     FormsModule,
