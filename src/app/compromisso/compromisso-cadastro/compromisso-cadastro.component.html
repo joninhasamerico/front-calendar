@@ -1,0 +1,76 @@
+<form method="POST" #frm="ngForm" (ngSubmit)="create(frm)">
+  <div class="form-group col-md-4">
+    <label for="agendaId">Data da agenda</label>
+    <select name="agendaId" [(ngModel)]="dados.agendaId" id="agendaId" class="form-control">
+      <option *ngFor="let agenda of agendas" [ngValue]="agenda._id">
+        {{agenda.diaMes}}
+      </option>
+    </select>
+    <br>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="assunto">Assunto</label>
+      <input name="assunto" [(ngModel)]="dados.assunto" type="text" class="form-control" id="assunto"
+        placeholder="Ex: Reunião de negócio">
+    </div>
+    <div class="form-group">
+      <label for="descricaoCompromisso">Descrição da Reunião</label>
+      <textarea name="descricaoCompromisso" [(ngModel)]="dados.descricaoCompromisso" class="form-control"
+        id="descricaoCompromisso" rows="3"></textarea>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="horarioInicio">Horário de inicio</label>
+        <input name="horarioInicio" [(ngModel)]="dados.horarioInicio" type="text" class="form-control"
+          id="horarioInicio">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="horarioFim">Horário do fim</label>
+        <input name="horarioFim" [(ngModel)]="dados.horarioFim" type="text" class="form-control" id="horarioFim">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="col-md-12">
+        <h5 class="text-center">Endereço</h5>
+      </div>
+
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="cep">CEP</label>
+        <input name="cep" [(ngModel)]="dados.cep" type="text" class="form-control"
+          id="cep" (blur)="buscaCep(dados.cep)">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-8">
+        <label for="logradouro">Logradouro</label>
+        <input name="logradouro" [(ngModel)]="dados.logradouro" type="text" class="form-control" id="logradouro">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="complemento">Complemento</label>
+        <input name="complemento" [(ngModel)]="dados.complemento" type="text" class="form-control" id="complemento">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="localidade">Cidade</label>
+        <input name="localidade" [(ngModel)]="dados.localidade" type="text" class="form-control" id="localidade">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="uf">Estado (UF)</label>
+        <input name="uf" [(ngModel)]="dados.uf" type="text" class="form-control" id="uf">
+      </div>
+      <div class="form-group col-md-3">
+          <label for="numero">Número</label>
+          <input name="numero" [(ngModel)]="dados.numero" type="text" class="form-control" id="numero">
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+  </div>
+</form>
