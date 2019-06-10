@@ -35,7 +35,6 @@ export class AgendaCadastroComponent implements OnInit {
       await this.agendaService.create(this.dados)
       .then(result => this.router.navigate([`compromissoCadastro`]))
       .catch(error => { console.error(error); return Promise.reject(error); });
-      
     } else {
       this.agendaService.edite(this.dados)
       .then(result => this.agendas = result.data)
